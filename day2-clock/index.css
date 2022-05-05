@@ -1,0 +1,111 @@
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+html {
+    background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5);
+    background-size: cover;
+    font-family: 'helvetica', sans-serif;
+    text-align: center;
+    font-size: 10px;
+}
+
+body {
+    margin: 0;
+    font-size: 2rem;
+    display: flex;
+    flex: 1;
+    min-height: 100vh;
+    align-items: center;
+}
+
+.clock {
+    width: 30rem;
+    height: 30rem;
+    background-color: rgba(255, 255, 255, .8);
+    border: 1.5em solid white; 
+    border-radius: 50%;
+    margin: 50px auto;
+    position: relative;
+    padding: 1rem;
+    box-shadow:
+        0 0 0 4px rgba(0,0,0,0.1),
+        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 10px black,
+        0 0 10px rgba(0,0,0,0.2);
+}
+
+.clock::after{
+    content: '';
+    position: absolute;
+    background: black;
+    z-index: 100;
+    width:15px;
+    height:15px;
+    border-radius: 50%;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.clock-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-3px);
+}
+
+.hand {
+    width: 50%;
+    height: 7px;
+    background: black;
+    position: absolute;
+    top: 50%;
+    transform-origin: right;
+    transform: rotate(90deg);
+    transition:all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.6, 1);
+}
+
+.hour-hand{
+    width: 50%;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    
+}
+
+.min-hand{
+    height:4.5px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+
+}
+.second-hand{
+    background:red;
+    height: 2.3px;
+}
+
+/*----Clock Numbers----*/
+
+.clock .number{
+    --rotation:0;
+    position: absolute;
+    font-size:2.5rem;
+    font-weight: bolder;
+    width: 100%;
+    height: 100%;
+    transform: rotate(var(--rotation));
+
+}
+
+.clock .number1 {--rotation:30deg;}
+.clock .number2 {--rotation:60deg;}
+.clock .number3 {--rotation:90deg;}
+.clock .number4 {--rotation:120deg;}
+.clock .number5 {--rotation:150deg;}
+.clock .number6 {--rotation:180deg;}
+.clock .number7 {--rotation:210deg;}
+.clock .number8 {--rotation:240deg;}
+.clock .number9 {--rotation:270deg;}
+.clock .number10 {--rotation:300deg;}
+.clock .number11 {--rotation:330deg;}
