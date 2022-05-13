@@ -12,7 +12,7 @@ fetch(endpoint)
 function findMatches(wordToMatch, cities){
     return cities.filter(place=> {
         //we need to figure out if the city or state matches what was searched
-        //g stands for all strings i stands for insensitive (will match lower case too)
+        //g stands for global (find all matches) i stands for ignore the cases (upper and lower)
         const regex = new RegExp(wordToMatch, 'gi')
         return place.city.match(regex) || place.state.match(regex)
     })
@@ -26,13 +26,14 @@ function displayMatches(){
     const matchArray = findMatches(this.value, cities)
     const html = matchArray.map(place=>{
         const regex = new RegExp(this.value, 'gi')
+        console.log(regex)
         const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`)
         const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`)
         return `
-        <li>
-            <span class='name'>${cityName}, ${stateName}</span>
-            <span class='population'>${numberWithCommas(place.population)}</span>
-        </li>`
+            <li>
+                <span class='name'>${cityName}, ${stateName}</span>
+                <span class='population'>${numberWithCommas(place.population)}</span>
+            </li>`
     } ).join('')
 
     suggestions.innerHTML=html
