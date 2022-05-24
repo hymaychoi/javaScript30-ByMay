@@ -45,7 +45,6 @@ function handleFullScreen(){
 	.catch(function(error) {
 		console.log(error)
 	});
-    
 }
 
 video.addEventListener('click', togglePlay)
