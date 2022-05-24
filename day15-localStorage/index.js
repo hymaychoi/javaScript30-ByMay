@@ -1,11 +1,14 @@
 const ITEMS_KEY = 'items'
 const addItems = document.querySelector('.add-items');
 const itemsList = document.querySelector('.plates');
-const items = JSON.parse(localStorage.getItem(ITEMS_KEY)) ||  []
+let items = JSON.parse(localStorage.getItem(ITEMS_KEY)) ||  []
 const selectAll = addItems.querySelector('input[type=checkbox]')
+const deleteBtn = document.getElementById('deleteBtn')
 
-function saveData(items){
-    localStorage.setItem(ITEMS_KEY, JSON.stringify(items))
+function saveData(newArr){
+    localStorage.setItem(ITEMS_KEY, JSON.stringify(newArr))
+    items = newArr
+    
 }
 
 function addItem(e){
@@ -21,6 +24,15 @@ function addItem(e){
     saveData([...items])
     // will reset the form
     this.reset();
+}
+
+function deleteItem(e){
+
+    const updatedArr = items.filter(item=>!item.done)
+    populateList(updatedArr, itemsList)
+    saveData(updatedArr)
+    console.log(items)
+    
 }
 
 //need two parameters (platesArray, where to put the list)
@@ -64,4 +76,5 @@ function selectAllItems(e){
 addItems.addEventListener("submit", addItem )
 itemsList.addEventListener('click', toggleDone)
 selectAll.addEventListener('click', selectAllItems)
+deleteBtn.addEventListener('click', deleteItem)
 populateList(items, itemsList)
